@@ -5,7 +5,9 @@ using namespace NTL;
 using namespace bn;
 
 
-EVP_CIPHER_CTX en, de;
+EVP_CIPHER_CTX *en = EVP_CIPHER_CTX_new();
+EVP_CIPHER_CTX *de = EVP_CIPHER_CTX_new();
+
 ZZ_p s;
 MYSQL *conn;
 
@@ -77,7 +79,7 @@ int main(){
 	cout<<"time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
     
     /* gen key and iv. init the cipher ctx object */
-    if (aes_init(key_data, key_data_len, (unsigned char *)&salt, &en, &de)) {
+    if (aes_init(key_data, key_data_len, (unsigned char *)&salt, en, de)) {
         printf("Couldn't initialize AES cipher\n");
         return -1;
     }
@@ -97,7 +99,7 @@ int main(){
 	
 	char *server = "localhost";
     char *user = "root";
-    char *password = "root";
+    char *password = "";
     char *database = "integridb";
 
     conn = mysql_init(NULL);

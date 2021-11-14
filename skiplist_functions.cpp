@@ -113,7 +113,7 @@ void skiplist::insert_element(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 g2)
     
     {
         int len = 254;
-        memcpy(newnode->encry, aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(newnode->encry, aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
     }
     
@@ -158,10 +158,10 @@ void skiplist::insert_element(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 g2)
         temp[i]->enc2*=conv<ZZ_p>(rowID)+s;
         int len = 254;
         ZZ_p temp_de;
-        temp_de = StringToz((char *)aes_decrypt(&de, temp[i]->encry, &len));
+        temp_de = StringToz((char *)aes_decrypt(de, temp[i]->encry, &len));
         strcpy(buf,zToString(temp_de*(conv<ZZ_p>(rowID)+s)));
         len = 254;
-        memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
 		{
 		const mie::Vuint g_temp(zToString(temp_de*(conv<ZZ_p>(rowID)+s)));
@@ -183,7 +183,7 @@ void skiplist::insert_element(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 g2)
         snode* temp_newnode = newnode->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             
             
             
@@ -193,7 +193,7 @@ void skiplist::insert_element(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 g2)
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(newnode->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(newnode->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -208,14 +208,14 @@ void skiplist::insert_element(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 g2)
         temp_newnode = temp[i]->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             temp_newnode = temp_newnode->right;
         }
         temp[i]->enc2 = temp_enc;
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -286,7 +286,7 @@ void skiplist::insert_element_inorder(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
     
     {
         int len = 254;
-        memcpy(newnode->encry, aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(newnode->encry, aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
     }
     
@@ -332,10 +332,10 @@ void skiplist::insert_element_inorder(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         temp[i]->enc2*=conv<ZZ_p>(rowID)+s;
         int len = 254;
         ZZ_p temp_de;
-        temp_de = StringToz((char *)aes_decrypt(&de, temp[i]->encry, &len));
+        temp_de = StringToz((char *)aes_decrypt(de, temp[i]->encry, &len));
         strcpy(buf,zToString(temp_de*(conv<ZZ_p>(rowID)+s)));
         len = 254;
-        memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
 		{
 		const mie::Vuint g_temp(zToString(temp_de*(conv<ZZ_p>(rowID)+s)));
@@ -357,7 +357,7 @@ void skiplist::insert_element_inorder(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         snode* temp_newnode = newnode->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             
             
             
@@ -367,7 +367,7 @@ void skiplist::insert_element_inorder(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(newnode->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(newnode->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -382,14 +382,14 @@ void skiplist::insert_element_inorder(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         temp_newnode = temp[i]->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             temp_newnode = temp_newnode->right;
         }
         temp[i]->enc2 = temp_enc;
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -462,7 +462,7 @@ void skiplist::insert_element_inverse_inorder(int value, int rowID, ZZ_p s, Ec1 
     
     {
         int len = 254;
-        memcpy(newnode->encry, aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(newnode->encry, aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
     }
     
@@ -506,10 +506,10 @@ void skiplist::insert_element_inverse_inorder(int value, int rowID, ZZ_p s, Ec1 
         temp[i]->enc2*=1/conv<ZZ_p>(rowID)+s;
         int len = 254;
         ZZ_p temp_de;
-        temp_de = StringToz((char *)aes_decrypt(&de, temp[i]->encry, &len));
+        temp_de = StringToz((char *)aes_decrypt(de, temp[i]->encry, &len));
         strcpy(buf,zToString(temp_de*(1/conv<ZZ_p>(rowID)+s)));
         len = 254;
-        memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
 		{
 		const mie::Vuint g_temp(zToString(temp_de*(1/conv<ZZ_p>(rowID)+s)));
@@ -531,7 +531,7 @@ void skiplist::insert_element_inverse_inorder(int value, int rowID, ZZ_p s, Ec1 
         snode* temp_newnode = newnode->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             
             
             
@@ -541,7 +541,7 @@ void skiplist::insert_element_inverse_inorder(int value, int rowID, ZZ_p s, Ec1 
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(newnode->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(newnode->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -556,14 +556,14 @@ void skiplist::insert_element_inverse_inorder(int value, int rowID, ZZ_p s, Ec1 
         temp_newnode = temp[i]->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             temp_newnode = temp_newnode->right;
         }
         temp[i]->enc2 = temp_enc;
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -633,7 +633,7 @@ void skiplist::insert_element_inverse(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
     
     {
         int len = 254;
-        memcpy(newnode->encry, aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(newnode->encry, aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
     }
     
@@ -677,10 +677,10 @@ void skiplist::insert_element_inverse(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         temp[i]->enc2*=1/conv<ZZ_p>(rowID)+s;
         int len = 254;
         ZZ_p temp_de;
-        temp_de = StringToz((char *)aes_decrypt(&de, temp[i]->encry, &len));
+        temp_de = StringToz((char *)aes_decrypt(de, temp[i]->encry, &len));
         strcpy(buf,zToString(temp_de*(1/conv<ZZ_p>(rowID)+s)));
         len = 254;
-        memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
 		{
 		const mie::Vuint g_temp(zToString(temp_de*(1/conv<ZZ_p>(rowID)+s)));
@@ -702,7 +702,7 @@ void skiplist::insert_element_inverse(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         snode* temp_newnode = newnode->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             
             
             
@@ -712,7 +712,7 @@ void skiplist::insert_element_inverse(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(newnode->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(newnode->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -727,14 +727,14 @@ void skiplist::insert_element_inverse(int value, int rowID, ZZ_p s, Ec1 g1, Ec2 
         temp_newnode = temp[i]->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             temp_newnode = temp_newnode->right;
         }
         temp[i]->enc2 = temp_enc;
         strcpy(buf, zToString(temp_enc));
         {
             int len = 254;
-            memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		
@@ -792,7 +792,7 @@ void skiplist::delete_element(int value, Ec1 g1, Ec2 g2)
         temp[0]->right = deletenode->right;
         temp[0]->right0 = deletenode->right0;
         int len=254;
-        delete_value = StringToz((char *)aes_decrypt(&de, deletenode->encry, &len));
+        delete_value = StringToz((char *)aes_decrypt(de, deletenode->encry, &len));
         delete deletenode;
         
     }
@@ -834,7 +834,7 @@ void skiplist::delete_element(int value, Ec1 g1, Ec2 g2)
             temp[i-1]->right0 = deletenode->right0;
             if(i==1){
                 int len=254;
-                delete_value = StringToz((char *)aes_decrypt(&de, deletenode->encry, &len));
+                delete_value = StringToz((char *)aes_decrypt(de, deletenode->encry, &len));
             }
             
             delete deletenode;
@@ -849,14 +849,14 @@ void skiplist::delete_element(int value, Ec1 g1, Ec2 g2)
         snode* temp_newnode = temp[i]->down;
         while(temp_newnode!=NULL){
             int len = 254;
-            temp_enc*=StringToz((char *)aes_decrypt(&de, temp_newnode->encry, &len));
+            temp_enc*=StringToz((char *)aes_decrypt(de, temp_newnode->encry, &len));
             temp_newnode = temp_newnode->right;
         }
         temp[i]->enc2 = temp_enc;
         strcpy(buf,zToString(temp_enc));
         {
             int len = 254;
-            memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             memset(buf,0,254);
         }
 		{
@@ -872,10 +872,10 @@ void skiplist::delete_element(int value, Ec1 g1, Ec2 g2)
         temp[i]->enc2/=delete_value;
         int len = 254;
         ZZ_p temp_de;
-        temp_de = StringToz((char *)aes_decrypt(&de, temp[i]->encry, &len));
+        temp_de = StringToz((char *)aes_decrypt(de, temp[i]->encry, &len));
         strcpy(buf,zToString(temp_de/delete_value));
         len = 254;
-        memcpy(temp[i]->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+        memcpy(temp[i]->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         memset(buf,0,254);
 		{
 		const mie::Vuint g_temp(zToString(temp_de/delete_value));
@@ -903,7 +903,7 @@ void skiplist::display()
         }
         while(x->right!=NULL || x->right0 != NULL){
             int len = 254;
-            temp = (char *)aes_decrypt(&de, x->encry, &len);
+            temp = (char *)aes_decrypt(de, x->encry, &len);
             cout << x->value<<"("<<x->rowID<<")";//<<"("<<(x->enc2==StringToz(temp))<<")";
             
             //free(temp);
@@ -920,7 +920,7 @@ void skiplist::display()
         {
             
             int len = 254;
-            temp = (char *)aes_decrypt(&de, x->encry, &len);
+            temp = (char *)aes_decrypt(de, x->encry, &len);
             cout << x->value<<"("<<x->rowID<<")";//<<"("<<(x->enc2==StringToz(temp))<<")";
         }
         

@@ -29,7 +29,7 @@
 #define P 0.5
 
 
-extern EVP_CIPHER_CTX en, de;
+extern EVP_CIPHER_CTX *en, *de;
 extern MYSQL *conn;
 
 //public keys
@@ -119,7 +119,7 @@ struct skiplist
         {
             int len = 254;
             strcpy(buf,zToString(header->enc2));
-            memcpy(temp->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
         }
         
         for(int i=0;i<MAX_LEVEL-1;i++){
@@ -127,7 +127,7 @@ struct skiplist
 			temp->down->rowID = NINF;
             temp->down->enc2 = NTL::conv<NTL::ZZ_p>(1);
             int len = 254;
-            memcpy(temp->down->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp->down->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
             
             temp->down->up = temp;
             temp = temp->down;
@@ -137,7 +137,7 @@ struct skiplist
             temp->right = new snode(INF);
 			temp->right->rowID = INF;
             temp->right->enc2 = NTL::conv<NTL::ZZ_p>(1);
-            memcpy(temp->right->encry , aes_encrypt(&en, (unsigned char *)buf, &len),254);
+            memcpy(temp->right->encry , aes_encrypt(en, (unsigned char *)buf, &len),254);
 			simpleSHA256(&temp->right->value, NULL, 4, 0, temp->right->hash);
         }
         
