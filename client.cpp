@@ -173,31 +173,35 @@ int main(){
 			ss_sum[0][i][j].insert_element_inverse(sort_col[0][0],sort_col[0][1],s,g1,g2);
 		}
 	}
-
 	
 	
 	t2 = clock();
 	cout<<"time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
+
 	
-	int option;
+	int options[] = {2, 3, 5, 9};
+
+	int results[] = {0, 0, 0, 0};
 	
-	while(1){
-		cout<<endl<<"-----------------------"<<endl;
-        cout<<endl<<"Operations"<<endl;
-        cout<<endl<<"-----------------------"<<endl;
-		cout<<"0.Exit"<<endl;
-        cout<<"1.Single Dimensional Query"<<endl;
-        cout<<"2.Update"<<endl;
-        cout<<"3.Multi Dimensional Query"<<endl;
-		cout<<"4.Sum Single Dimensional Query"<<endl;
-		cout<<"5.Sum Multi Dimensional Query"<<endl;
-		cout<<"6.Count Single Dimensional Query"<<endl;
-		cout<<"7.Count Multi Dimensional Query"<<endl;
-		cout<<"8.MAX Query"<<endl;
-		cout<<"9.MIN Query"<<endl;
-        cout<<"10.test"<<endl;
-        cout<<"Enter your choice : ";
-		cin>>option;
+	for (int i = 0; i < 5; i ++) {
+	for (int option : options) {
+
+		// cout<<endl<<"-----------------------"<<endl;
+        // cout<<endl<<"Operations"<<endl;
+        // cout<<endl<<"-----------------------"<<endl;
+		// cout<<"0.Exit"<<endl;
+        // cout<<"1.Single Dimensional Query"<<endl;
+        // cout<<"2.Update"<<endl;
+        // cout<<"3.Multi Dimensional Query"<<endl;
+		// cout<<"4.Sum Single Dimensional Query"<<endl;
+		// cout<<"5.Sum Multi Dimensional Query"<<endl;
+		// cout<<"6.Count Single Dimensional Query"<<endl;
+		// cout<<"7.Count Multi Dimensional Query"<<endl;
+		// cout<<"8.MAX Query"<<endl;
+		// cout<<"9.MIN Query"<<endl;
+        // cout<<"10.test"<<endl;
+        // cout<<"Enter your choice : ";
+		// cin>>option;
 		
 		switch(option){
 		
@@ -279,7 +283,8 @@ int main(){
 				
 				
 				t2 = clock();
-					cout<<"update time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
+				results[0] += t2 - t1;
+					// cout<<"update time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
 				
 				break;
 			}
@@ -354,7 +359,9 @@ int main(){
 				}
 				
 				t2 = clock();
-					cout<<"verification time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
+					// cout<<"verification time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
+				
+				results[1] += t2 - t1;
 			
 				break;
 			}
@@ -457,7 +464,7 @@ int main(){
 				
 				t2 = clock();
 					cout<<"prover time: "<<(double)(t2-t1)/CLOCKS_PER_SEC<<"s\n";
-				
+				results[2] += t2 - t1;
 				
 				cout<<"sum is:"<<result<<endl;
 				
@@ -758,7 +765,7 @@ int main(){
 					
 					cout<<"result is:"<<result<<endl;
 					
-					
+					results[3] += t2 - t1;
 					
 					
 					
@@ -825,6 +832,9 @@ int main(){
 		
 		}
 	}
+ 	}
+
+	cout<<results<<"\n";
 }
 
 
